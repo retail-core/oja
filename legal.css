@@ -1,0 +1,310 @@
+/* Shared styles for the legal pages (privacy.html, terms.html).
+   Colours, fonts and the footer match index.html. */
+:root {
+  --color-bg: #0c231a;
+  --color-white: #ffffff;
+  --color-accent: #e6ff55;
+  --color-primary: #004a3d;
+  --color-surface: #f4ede4;
+  --color-button-border: #80a39e;
+  --color-black-70: rgba(0, 0, 0, 0.7);
+  --color-black-08: rgba(0, 0, 0, 0.08);
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-surface);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; }
+
+/* ---------- Navigation (same as index.html) ---------- */
+.nav {
+  position: fixed;
+  z-index: 100;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 24px);
+}
+.nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 999px;
+}
+.nav__logo { display: block; flex-shrink: 0; border-radius: 8px; }
+.nav__logo img { display: block; width: 32px; height: 32px; }
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav__link {
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+.nav__link:hover { opacity: 0.7; }
+.nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 44px;
+  padding: 0 24px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-button-border);
+  border-radius: 2048px;
+  color: var(--color-white);
+  font-size: 16px;
+  line-height: 20.48px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+.nav__cta:hover { background: var(--color-primary); }
+.nav__cta img { width: 17px; height: 17px; transition: transform 0.2s ease; }
+.nav__cta:hover img { transform: translateX(3px); }
+.nav a:focus-visible,
+.nav__toggle:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.nav__toggle svg { width: 24px; height: 24px; }
+.nav__toggle .icon-close,
+.nav--open .nav__toggle .icon-menu { display: none; }
+.nav--open .nav__toggle .icon-close { display: block; }
+.nav__panel { display: none; }
+/* Over the cream sections, darken the glass so the white links stay readable */
+.nav--on-light .nav__bar,
+.nav--on-light.nav--open .nav__panel { background: rgba(12, 35, 26, 0.85); }
+/* At the very top of the page: no fill (switches instantly, no fade).
+   Kept while the mobile menu is open so the bar matches its panel. */
+.nav--at-top:not(.nav--open) .nav__bar {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* ---------- Title band ---------- */
+/* Top padding clears the fixed nav (it ends 92px down on desktop) */
+.legal-hero {
+  padding: 160px 100px 72px;
+  background: var(--color-bg);
+  color: var(--color-white);
+  text-align: center;
+}
+.legal-hero__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.legal-hero__meta {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 16px;
+  line-height: 22.4px;
+}
+
+/* ---------- Content ---------- */
+.legal-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px 24px 100px;
+  color: var(--color-black-70);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.legal-content h2 {
+  margin: 40px 0 12px;
+  color: var(--color-bg);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.3;
+}
+.legal-content h2:first-child { margin-top: 0; }
+.legal-content p { margin: 0 0 16px; }
+.legal-content a { color: var(--color-primary); }
+.legal-content strong { color: var(--color-bg); font-weight: 600; }
+.legal-content ul { margin: 0 0 16px; padding-left: 22px; }
+.legal-content li { margin-bottom: 8px; }
+.legal-content li::marker { color: var(--color-primary); }
+.legal-content address { margin: 0 0 16px; font-style: normal; }
+/* Bracketed details still to be filled in before launch */
+.legal-content mark {
+  padding: 0 4px;
+  background: rgba(230, 255, 85, 0.55);
+  border-radius: 4px;
+  color: var(--color-bg);
+}
+/* Placeholder until the real text is supplied */
+.legal-placeholder {
+  padding: 32px;
+  background: rgba(12, 35, 26, 0.04);
+  border: 1px dashed rgba(12, 35, 26, 0.25);
+  border-radius: 16px;
+  text-align: center;
+}
+.legal-placeholder p:last-child { margin-bottom: 0; }
+
+/* ---------- Footer (same as index.html) ---------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 54px 100px 24px;
+  background: var(--color-bg);
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+}
+.footer__brand { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.footer__logo { display: flex; align-items: center; gap: 10px; border-radius: 12px; }
+.footer__logo img:first-child { width: 54px; height: 54px; }
+.footer__logo img:last-child { width: 56.232px; height: 37px; }
+.footer__tagline { margin: 0; }
+.footer__social { display: flex; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+.footer__social a:hover { background: rgba(255, 255, 255, 0.15); }
+.footer__social img { width: 20px; height: 20px; }
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer__links a { color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: color 0.2s ease; }
+.footer__links a:hover { color: var(--color-white); text-decoration: underline; text-underline-offset: 3px; }
+.footer__links a[aria-current="page"] { color: var(--color-white); }
+.footer__legal { display: flex; align-items: center; gap: 12px; margin: 0; }
+.footer__dot { width: 7px; height: 7px; background: var(--color-white); border-radius: 1000px; }
+
+/* ---------- Floating WhatsApp button (same as index.html) ---------- */
+.whatsapp-fab {
+  position: fixed;
+  z-index: 90;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  background: #25d366;
+  border-radius: 50%;
+  color: var(--color-white);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.whatsapp-fab:hover { transform: scale(1.08); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3); }
+.whatsapp-fab svg { position: relative; width: 30px; height: 30px; animation: whatsapp-wiggle 3s ease-in-out infinite; }
+/* Always-on attention cues: two rings ripple out from the button, and the icon gives a short shake every 3s */
+.whatsapp-fab::before,
+.whatsapp-fab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25d366;
+  z-index: -1;
+  animation: whatsapp-ripple 2s ease-out infinite;
+}
+.whatsapp-fab::after { animation-delay: 1s; }
+@keyframes whatsapp-ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+@keyframes whatsapp-wiggle {
+  0%, 70%, 100% { transform: rotate(0); }
+  74% { transform: rotate(-14deg); }
+  78% { transform: rotate(12deg); }
+  82% { transform: rotate(-10deg); }
+  86% { transform: rotate(8deg); }
+  90% { transform: rotate(0); }
+}
+
+a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.whatsapp-fab:focus-visible { outline-width: 3px; }
+.legal-content a:focus-visible { outline-color: var(--color-primary); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .legal-hero { padding: 152px 32px 64px; }
+  .footer { padding: 54px 32px 24px; }
+}
+/* Mobile nav: logo + menu button, links open in a panel below the bar */
+@media (max-width: 720px) {
+  .nav { top: 24px; left: 12px; right: 12px; max-width: none; transform: none; }
+  .nav__bar { justify-content: space-between; gap: 0; padding: 12px 20px; }
+  .nav__bar .nav__links,
+  .nav__bar .nav__cta { display: none; }
+  .nav__toggle { display: inline-flex; }
+  .nav--open .nav__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 8px;
+    padding: 24px 20px 20px;
+    background: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-radius: 32px;
+  }
+  .nav__panel .nav__links { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .nav__panel .nav__link { font-size: 18px; }
+  .nav__panel .nav__cta { justify-content: center; }
+}
+@media (max-width: 600px) {
+  /* Mobile nav ends 80px down */
+  .legal-hero { padding: 128px 24px 48px; }
+  .legal-hero__title { font-size: 32px; }
+  .legal-content { padding: 48px 24px 72px; }
+  .legal-content h2 { font-size: 20px; }
+  .legal-placeholder { padding: 24px 20px; }
+  /* Extra bottom space so the floating WhatsApp button never covers the last footer lines */
+  .footer { padding: 54px 16px 88px; }
+  .whatsapp-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+  .whatsapp-fab svg { width: 28px; height: 28px; }
+}
